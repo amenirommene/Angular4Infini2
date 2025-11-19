@@ -4,6 +4,7 @@ title : string,
 description : string,
 category : string,
 date : Date,
-status : string
+status : string,
+nbLikes? : number
 }
 

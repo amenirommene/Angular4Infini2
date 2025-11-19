@@ -6,37 +6,44 @@
       type="text"
       class="search-input"
       [placeholder]="placeHolderText"
+      [(ngModel)]="serachT"
   />
   </div>
 
   <div class="suggestions-list">
-    <div class="suggestion-card" *ngFor="let s of suggestions">
+    <div *ngFor="let s of suggestions">
+    <div class="suggestion-card" *ngIf="s.title.toLocaleLowerCase().includes(serachT.toLowerCase())" >
       <div class="card-header">
         <h2 class="suggestion-title">{{s.title}}</h2>
       </div>
 
       <div class="card-meta">
-        <span class="category">Suggestion categorie</span>
-        <span class="date">date</span>
+        <span class="category">{{s.category}}</span>
+        <span class="date">{{s.date | date: "dd MMM yyyy"}}</span>
       </div>
 
-      <p class="suggestion-description">description</p>
+      <p class="suggestion-description">{{s.description}}</p>
 
       <div class="card-footer">
-        <span> statut
-        </span>
+      <span class="status-badge"
+      [ngClass]="
+        {'status-accepted' : s.status == 'acceptee','status-refused' : s.status == 'refusee', 'status-pending' : s.status == 'en_attente' }">
+        {{s.status | uppercase}}
+      </span>
 
         <div  class="action-buttons">
-          <button class="btn-like">
+          <button class="btn-like" *ngIf="s.status != 'refusee'" (click)="like(s)">
             <span class="icon">👍</span>
-           nb likes
+           {{s?.nbLikes}}
           </button>
-          <button class="btn-favorite" (click)="addToFavoris()">
+          <button class="btn-favorite"
+          [disabled]="s.status == 'refusee'" (click)="addToFavoris(s)">
             <span class="icon">❤️</span>
             Ajouter aux favoris
           </button>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>

@@ -4,15 +4,25 @@ import { Suggestion } from '../../models/suggestion';
 @Component({
   selector: 'app-list-suggestions',
   templateUrl: './list-suggestions.component.html',
-  styleUrl: './list-suggestions.component.css'
+  styleUrl: './list-suggestions.component.css',
+  //imports:[FormsModule] si mon composant est standalone çad n'appartient pas à un module
 })
 export class ListSuggestionsComponent {
 titre : string = "Liste des suggestionssss";
 placeHolderText : string = "Rechercher une suggestions";
-addToFavoris(){
-  console.log("event binding")
+Masfavoris : Suggestion[] = [];
+addToFavoris(s:Suggestion){
+  this.Masfavoris.push(s);
+  console.log(this.Masfavoris)
 }
-
+serachT="";
+like(s:Suggestion){
+  if (s.nbLikes != null){
+  s.nbLikes = s.nbLikes + 1;
+  } else{
+    s.nbLikes=0;
+  }
+}
 suggestions: Suggestion[] = [
 {
 id: 1,
@@ -37,5 +47,23 @@ description: 'Mise en place d\'un programme de récompenses pour motiver les emp
 category: 'Ressources Humaines',
 date: new Date('2025-01-25'),
 status: 'refusee'
+},
+{
+id: 4,
+title: 'Moderniser l\'interface utilisateur',
+description: 'Refonte complète de l\'interface utilisateur pour une meilleure expérience utilisateur.',
+category: 'Technologie',
+date: new Date('2025-01-30'),
+status: 'en_attente',
+nbLikes : 2
+},
+{
+id: 5,
+title: 'Formation à la sécurité informatique',
+description: 'Organisation d\'une formation sur les bonnes pratiques de sécurité informatique pour tous les employés.',
+category: 'Formation',
+date: new Date('2025-02-05'),
+status:'acceptee',
+nbLikes : 3
 }]
 }
