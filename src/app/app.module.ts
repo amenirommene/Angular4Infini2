@@ -7,11 +7,13 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { ListSuggestionsComponent } from './core/list-suggestions/list-suggestions.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './core/home/home.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 @NgModule({
   declarations: [ //liste des composants associés à ce module
     AppComponent,
-    HeaderComponent, FooterComponent, ListSuggestionsComponent
+    HeaderComponent, FooterComponent, ListSuggestionsComponent, HomeComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
