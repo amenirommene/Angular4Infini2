@@ -6,8 +6,10 @@ import { SuggestionDetailsComponent } from './suggestion-details/suggestion-deta
 
 const routes: Routes = [
   { path: '', component: SuggestionsComponent,children:[
-    { path: '', component: ListSuggestionsComponent},
-    { path: '/:id', component: SuggestionDetailsComponent}
+    { path: '', component: ListSuggestionsComponent,children:[
+      // { path: ':id', component: SuggestionDetailsComponent}
+    ]},
+    { path: ':id', component: SuggestionDetailsComponent}
   ] }];
 
 @NgModule({

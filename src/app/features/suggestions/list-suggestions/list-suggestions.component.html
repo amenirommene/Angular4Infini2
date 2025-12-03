@@ -41,10 +41,13 @@
             <span class="icon">❤️</span>
             Ajouter aux favoris
           </button>
+          <button class="btn-favorite" [routerLink]="['./',s.id]">
+            Details
+          </button>
         </div>
       </div>
     </div>
     </div>
   </div>
 </div>
-
+<router-outlet></router-outlet>
