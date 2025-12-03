@@ -1,4 +1,4 @@
-<form class="p-3">
+<form class="p-3" [formGroup]="myForm" (ngSubmit)="add()">
 
 
 
@@ -6,19 +6,19 @@
 
   <label>Titre</label>
 
-  <input type="text" class="form-control">
+  <input type="text" class="form-control" formControlName="title">
 
 
 
- <!--- <div class="text-danger">
+ <div class="text-danger" *ngIf="myForm.get('title')?.touched && myForm.get('title')?.invalid">
 
-   <small>Titre obligatoire.</small>
+   <small *ngIf="myForm.get('title')?.errors?.['required']">Titre obligatoire.</small>
 
-   <small>Minimum 5 caractères.</small>
+   <small *ngIf="myForm.get('title')?.errors?.['minlength']">Minimum 5 caractères.</small>
 
-   <small>Doit commencer par une majuscule et contenir seulement des lettres.</small>
+   <small *ngIf="myForm.get('title')?.errors?.['pattern']">Doit commencer par une majuscule et contenir seulement des lettres.</small>
 
-  </div>---->
+  </div>
 
  </div>
 
@@ -28,21 +28,21 @@
 
   <label>Description</label>
 
-  <textarea rows="4" class="form-control"></textarea>
+  <textarea rows="4" class="form-control" formControlName="description"></textarea>
 
 
 
-  <!----- <div class="text-danger">
+<div class="text-danger" *ngIf="myForm.get('description')?.invalid">
 
-   <small>Description obligatoire.</small>
+   <small *ngIf="myForm.get('title')?.errors?.['required']">Description obligatoire.</small>
 
-   <small>
+   <small *ngIf="myForm.get('title')?.errors?.['minlength']">
 
     Minimum 30 caractères.
 
    </small>
 
-  </div>---->
+  </div>
 
  </div>
 
@@ -52,11 +52,11 @@
 
   <label>Catégorie</label>
 
-  <select class="form-select">
+  <select class="form-select" formControlName="category" *ngIf="myForm.get('category')?.invalid">
 
    <option value="">-- Choisir une catégorie --</option>
 
-   <option >cc</option>
+   <option *ngFor="let c of categories" >{{c}}</option>
 
   </select>
 
@@ -76,7 +76,7 @@
 
   <label>Date</label>
 
-  <input type="text" class="form-control" >
+  <input type="text" class="form-control" formControlName="date" readonly>
 
  </div>
 
@@ -86,13 +86,13 @@
 
   <label>Status</label>
 
-  <input type="text" class="form-control" >
+  <input type="text" class="form-control" formControlName="status" readonly>
 
  </div>
 
 
 
- <button class="btn btn-primary" type="submit">
+ <button class="btn btn-primary" type="submit" [disabled]="myForm.invalid">
 
   Soumettre
 
