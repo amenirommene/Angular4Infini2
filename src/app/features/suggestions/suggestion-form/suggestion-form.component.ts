@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SuggestionService } from '../../../core/services/suggestion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suggestion-form',
@@ -7,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './suggestion-form.component.css'
 })
 export class SuggestionFormComponent {
-
+constructor(private sugService:SuggestionService, private _router:Router) {}
 myForm!: FormGroup;
 categories: string[] = [
 'Infrastructure et bâtiments',
@@ -33,6 +35,8 @@ ngOnInit(){
   })
 }
 add(){
-  console.log(this.myForm.value)
+  console.log(this.myForm.value);
+  this.sugService.addSuggestion(this.myForm.value).subscribe(()=>this._router.navigateByUrl("/suggestions"))
+
 }
 }

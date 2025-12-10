@@ -7,6 +7,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { HomeComponent } from './core/home/home.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [ //liste des composants associés à ce module
@@ -18,7 +19,7 @@ import { HomeComponent } from './core/home/home.component';
     AppRoutingModule,
     //FormsModule
   ],
-  providers: [],
+  providers: [provideHttpClient()], //pour rendre le service HttpClient disponible dans toute l'application
   bootstrap: [AppComponent]
 })
 export class AppModule { }

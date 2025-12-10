@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+import { SuggestionService } from '../../core/services/suggestion.service';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { UsersComponent } from './users.component';
   imports: [
     CommonModule,
     UsersRoutingModule
-  ]
+  ],
+ // providers: [SuggestionService]
 })
 export class UsersModule { }
