@@ -61,8 +61,8 @@ apiUrl:string="http://localhost:3000/suggestions";
     return this._http.get<Suggestion[]>(this.apiUrl);
   }
 
-  getSuggestionById(id:number):Observable<Suggestion>{
-    return this._http.get<Suggestion>(this.apiUrl+"/"+id);
+  getSuggestionById(id:number):Observable<any>{
+    return this._http.get<any>(this.apiUrl+"/"+id);
   }
 
   addSuggestion(suggestion:Suggestion):Observable<Suggestion>{

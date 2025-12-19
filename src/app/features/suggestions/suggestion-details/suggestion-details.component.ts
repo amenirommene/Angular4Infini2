@@ -1,5 +1,7 @@
+import { SuggestionService } from './../../../core/services/suggestion.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Suggestion } from '../../../models/suggestion';
 
 @Component({
   selector: 'app-suggestion-details',
@@ -9,7 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SuggestionDetailsComponent {
 
   id! : number;
-constructor(private ac:ActivatedRoute, private _router:Router){
+  suggestion! : Suggestion;
+constructor(private sugService:SuggestionService,private ac:ActivatedRoute,
+  private _router:Router){
   console.log("constructor");
 }
 
@@ -19,7 +23,13 @@ ngOnInit(){
   next : data=>{this.id=Number(data.get('id'));console.log(data)},
   error :  err=> console.log(err)});*/
   this.ac.params.subscribe({
-  next : data=>{this.id=data['id'];console.log(data['id']);/*this._router.navigateByUrl("suggestions")*/},
+  next : data=>{
+    this.id=data['id'];
+    console.log(data['id']);
+    this.sugService.getSuggestionById(this.id).subscribe(
+      res=>this.suggestion=res.suggestion
+    );
+    /*this._router.navigateByUrl("suggestions")*/},
   error :  err=> console.log(err)});
 console.log(this.ac.snapshot);
 console.log("ngOnInit")
